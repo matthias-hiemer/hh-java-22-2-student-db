@@ -70,6 +70,26 @@ class StudentDBTest {
         String faultyId = "";
 
         // WHEN AND THEN
-        assertThrows(RuntimeException.class, () -> studentDB.getStudentById(faultyId));
+        assertThrows(IllegalArgumentException.class, () -> studentDB.getStudentById(faultyId));
+    }
+
+    @Test
+    void getStudentByIdShouldThrowExceptionOnInvalidId_try_catch() {
+        // GIVEN
+        Student[] students = new Student[0];
+        StudentDB studentDB = new StudentDB(students);
+
+        String faultyId = "";
+        boolean exceptionWasThrown = false;
+
+        // WHEN
+        try {
+            studentDB.getStudentById(faultyId);
+        } catch (IllegalArgumentException exception) {
+            exceptionWasThrown = true;
+        }
+
+        // THEN
+        assertTrue(exceptionWasThrown);
     }
 }

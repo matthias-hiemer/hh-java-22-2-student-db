@@ -30,7 +30,7 @@ public class StudentDB {
         // Alternativ prüfen ob Student null ist und anderen Wert zurückgeben
         // Bester Umgang: Optional
         if(Objects.isNull(requestedStudent.getId())) {
-            throw new RuntimeException("Es konnte kein Student mit der ID " + requestedId + " gefunden werden");
+            throw new IllegalArgumentException("Es konnte kein Student mit der ID " + requestedId + " gefunden werden");
         }
 
         return requestedStudent;
