@@ -1,16 +1,16 @@
-import model.Student;
-import repo.StudentDB;
+import model.ComputerScienceStudent;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        Student student1 = new Student("123", "Adam");
-        Student student2 = new Student("456", "Eva");
-        Student[] students = {student1, student2};
+        ComputerScienceStudent csStudent = new ComputerScienceStudent("789", "James", "Java");
 
-        StudentDB studentDB = new StudentDB(students);
+        csStudent.setId("456");
+        csStudent.setName("Berta");
+        csStudent.setFavoriteLanguage("C#");
 
-        System.out.println(studentDB);
+        System.out.println(csStudent);
 
     }
 }
