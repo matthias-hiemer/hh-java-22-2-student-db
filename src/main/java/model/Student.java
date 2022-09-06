@@ -10,6 +10,10 @@ public class Student {
         this.name = name;
     }
 
+    public Student() {
+        super();
+    }
+
 
     public String getId() {
         return id;
