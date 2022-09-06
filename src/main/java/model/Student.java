@@ -2,15 +2,23 @@ package model;
 
 public abstract class Student {
 
-    private String id;
-    private String name;
+    protected String id;
+    protected String name;
 
+    protected String address;
+    protected String identityCardNumber;
 
     public Student(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    public Student(String id, String name, String address, String identityCardNumber) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.identityCardNumber = identityCardNumber;
+    }
 
     public String getId() {
         return id;
@@ -28,6 +36,22 @@ public abstract class Student {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getIdentityCardNumber() {
+        return identityCardNumber;
+    }
+
+    public void setIdentityCardNumber(String identityCardNumber) {
+        this.identityCardNumber = identityCardNumber;
+    }
+
     public abstract String getCourse();
 
     @Override
@@ -35,6 +59,8 @@ public abstract class Student {
         return "Student{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", identityCardNumber='" + identityCardNumber + '\'' +
                 '}';
     }
 
@@ -55,6 +81,5 @@ public abstract class Student {
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         return result;
     }
-
 
 }

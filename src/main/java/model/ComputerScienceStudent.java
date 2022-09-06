@@ -1,13 +1,19 @@
 package model;
 
-public class ComputerScienceStudent extends Student{
+public class ComputerScienceStudent extends Student implements Citizen {
 
     private String favoriteLanguage;
 
-
-    public ComputerScienceStudent(String id, String name, String favoriteLang) {
+    public ComputerScienceStudent(String id, String name, String favoriteLanguage) {
         super(id, name);
-        this.favoriteLanguage = favoriteLang;
+        this.favoriteLanguage = favoriteLanguage;
+    }
+
+    public ComputerScienceStudent(String id, String name, String favoriteLanguage, String address, String identityCardNumber) {
+        super(id, name);
+        this.favoriteLanguage = favoriteLanguage;
+        this.address = address;
+        this.identityCardNumber = identityCardNumber;
     }
 
     public String getFavoriteLanguage() {
@@ -43,8 +49,22 @@ public class ComputerScienceStudent extends Student{
 
     @Override
     public String toString() {
-        return "id: " + getId()
-                + " name: " + getName()
-                + " favorite lang: " + favoriteLanguage;
+        return "Student{" +
+                "id='" + getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", address='" + getAddress() + '\'' +
+                ", identityCardNumber='" + getIdentityCardNumber() + '\'' +
+                ", favoriteLanguage='" + favoriteLanguage + '\'' +
+                '}';
+    }
+
+    @Override
+    public String getAddress() {
+        return this.address;
+    }
+
+    @Override
+    public String getIdentityCardNumber() {
+        return this.identityCardNumber;
     }
 }
