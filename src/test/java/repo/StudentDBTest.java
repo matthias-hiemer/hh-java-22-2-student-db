@@ -64,6 +64,12 @@ class StudentDBTest {
     @Test
     void getStudentByIdShouldThrowExceptionOnInvalidId() {
         // GIVEN
-        Student student1 = new Student("123", "Adam");
+        Student[] students = new Student[0];
+        StudentDB studentDB = new StudentDB(students);
+
+        String faultyId = "";
+
+        // WHEN AND THEN
+        assertThrows(RuntimeException.class, () -> studentDB.getStudentById(faultyId));
     }
 }
