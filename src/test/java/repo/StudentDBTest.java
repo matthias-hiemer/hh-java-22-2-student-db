@@ -41,4 +41,71 @@ class StudentDBTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void addShouldAddStudentToArray(){
+        //GIVEN
+        StudentDB studentDb = new StudentDB(new Student[]{
+                new Student("1","Peter"),
+                new Student("2", "Franziska"),
+        });
+
+        //WHEN
+        studentDb.add(new Student("3", "Maria"));
+        Student[] actual =  studentDb.getAllStudents();
+
+        //THEN
+        assertArrayEquals(new Student[]{
+                new Student("1", "Peter"),
+                new Student("2", "Franziska"),
+                new Student("3", "Maria")
+        }, actual);
+    }
+
+    @Test
+    void removeShouldRemoveStudentFromArray(){
+        //GIVEN
+        StudentDB studentDb = new StudentDB(new Student[]{
+                new Student("1", "Peter"),
+                new Student("2", "Franziska"),
+                new Student("3", "Maria")
+        });
+
+        //WHEN
+        studentDb.remove("3");
+        Student[] actual =  studentDb.getAllStudents();
+
+        //THEN
+        assertArrayEquals(new Student[]{
+                new Student("1","Peter"),
+                new Student("2","Franziska"),
+
+        }, actual);
+
+
+    }
+
+    @Test
+    void noStudentShouldBeRemovedWhenIdDoesNotExist(){
+        //GIVEN
+        StudentDB studentDb = new StudentDB(new Student[]{
+                new Student("1", "Peter"),
+                new Student("2", "Franziska"),
+                new Student("3", "Maria")
+        });
+
+        //WHEN
+        studentDb.remove("4");
+        Student[] actual =  studentDb.getAllStudents();
+
+        //THEN
+        assertArrayEquals(new Student[]{
+                new Student("1", "Peter"),
+                new Student("2", "Franziska"),
+                new Student("3", "Maria")
+
+        }, actual);
+
+
+    }
+
 }
