@@ -37,6 +37,11 @@ public class ComputerScienceStudent extends Student{
     }
 
     @Override
+    public String getCourse() {
+        return "Software Development 101";
+    }
+
+    @Override
     public String toString() {
         return "id: " + getId()
                 + " name: " + getName()

@@ -1,4 +1,5 @@
 import model.ComputerScienceStudent;
+import model.Student;
 
 
 public class Main {
@@ -11,6 +12,11 @@ public class Main {
         csStudent.setFavoriteLanguage("C#");
 
         System.out.println(csStudent);
+
+
+        Student student = new ComputerScienceStudent("123", "Sally", "Java");
+
+        System.out.println(student);
 
     }
 }

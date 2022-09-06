@@ -10,8 +10,8 @@ class StudentTest {
     @Test
     void testEquals_whenDifferentStudents_returnFalse(){
         // GIVE
-        Student student1 = new Student("123", "Anton");
-        Student student2 = new Student("567", "Berta");
+        Student student1 = new ComputerScienceStudent("123", "Anton", "Java");
+        Student student2 = new ComputerScienceStudent("567", "Berta", "Java");
 
         // WHEN
         boolean actual = student1.equals(student2);
@@ -23,8 +23,8 @@ class StudentTest {
     @Test
     void testEquals_whenSameStudents_returnTrue(){
         // GIVE
-        Student student1 = new Student("123", "Anton");
-        Student student2 = new Student("123", "Anton");
+        Student student1 = new ComputerScienceStudent("123", "Anton", "Java");
+        Student student2 = new ComputerScienceStudent("123", "Anton", "Java");
 
         // WHEN
         boolean actual = student1.equals(student2);
