@@ -41,4 +41,29 @@ class StudentDBTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void getStudentByIdShouldReturnRequestedStudentOnValidId() {
+        // GIVEN
+        Student student1 = new Student("123", "Adam");
+        Student student2 = new Student("456", "Eva");
+
+        Student[] students = {student1, student2};
+        StudentDB studentDB = new StudentDB(students);
+
+        Student requestedStudent = student2;
+        String requestedId = requestedStudent.getId();
+
+        // WHEN
+        Student foundStudent = studentDB.getStudentById(requestedId);
+        String foundId = foundStudent.getId();
+
+        // THEN
+        assertEquals(requestedId, foundId);
+    }
+
+    @Test
+    void getStudentByIdShouldThrowExceptionOnInvalidId() {
+        // GIVEN
+        Student student1 = new Student("123", "Adam");
+    }
 }
