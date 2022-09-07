@@ -21,19 +21,6 @@ public class StudentDB {
         students.put(student.getId(), student);
     }
 
-    public Student getStudentById(String requestedId) {
-        Student requestedStudent = students.get(requestedId);
-
-        // Exception werfen, wenn der passende Student nicht gefunden wurde
-        // Alternativ prüfen ob Student null ist und anderen Wert zurückgeben
-        // Bester Umgang: Optional
-        if(requestedStudent == null) {
-            throw new IllegalArgumentException("Es konnte kein Student mit der ID " + requestedId + " gefunden werden");
-        }
-
-        return requestedStudent;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
