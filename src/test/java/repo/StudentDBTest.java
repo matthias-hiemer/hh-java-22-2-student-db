@@ -16,17 +16,15 @@ class StudentDBTest {
         Student student1 = new Student("123", "Adam");
         Student student2 = new Student("456", "Eva");
 
-        Map<String, Student> students = new HashMap<>(2);
-        students.put(student1.getId(), student1);
-        students.put(student2.getId(), student2);
-
-        StudentDB studentDB = new StudentDB(students);
+        StudentDB studentDB = new StudentDB(new HashMap<>(2));
+        studentDB.addStudent(student1);
+        studentDB.addStudent(student2);
 
         // WHEN
         Map<String, Student> actual = studentDB.getAllStudents();
 
         // THEN
-        assertArrayEquals(students.values().toArray(), actual.values().toArray());
+        assertArrayEquals(studentDB.getAllStudents().values().toArray(), actual.values().toArray());
     }
 
     @Test
@@ -35,11 +33,9 @@ class StudentDBTest {
         Student student1 = new Student("123", "Adam");
         Student student2 = new Student("456", "Eva");
 
-        Map<String, Student> students = new HashMap<>(2);
-        students.put(student1.getId(), student1);
-        students.put(student2.getId(), student2);
-
-        StudentDB studentDB = new StudentDB(students);
+        StudentDB studentDB = new StudentDB(new HashMap<>(2));
+        studentDB.addStudent(student1);
+        studentDB.addStudent(student2);
 
         // WHEN
         String actual = studentDB.toString();
@@ -55,11 +51,9 @@ class StudentDBTest {
         Student student1 = new Student("123", "Adam");
         Student student2 = new Student("456", "Eva");
 
-        Map<String, Student> students = new HashMap<>(2);
-        students.put(student1.getId(), student1);
-        students.put(student2.getId(), student2);
-
-        StudentDB studentDB = new StudentDB(students);
+        StudentDB studentDB = new StudentDB(new HashMap<>(2));
+        studentDB.addStudent(student1);
+        studentDB.addStudent(student2);
 
         Student requestedStudent = student2;
         String requestedId = requestedStudent.getId();

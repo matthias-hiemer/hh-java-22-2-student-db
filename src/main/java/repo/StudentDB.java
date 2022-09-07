@@ -17,6 +17,10 @@ public class StudentDB {
         return this.students;
     }
 
+    public void addStudent(Student student) {
+        students.put(student.getId(), student);
+    }
+
     public Student getStudentById(String requestedId) {
         Student requestedStudent = students.get(requestedId);
 
