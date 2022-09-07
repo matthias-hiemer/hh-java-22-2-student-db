@@ -3,6 +3,9 @@ package repo;
 import model.Student;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
@@ -12,16 +15,18 @@ class StudentDBTest {
         // GIVEN
         Student student1 = new Student("123", "Adam");
         Student student2 = new Student("456", "Eva");
-        Student[] students = {student1, student2};
+
+        Map<String, Student> students = new HashMap<>(2);
+        students.put(student1.getId(), student1);
+        students.put(student2.getId(), student2);
 
         StudentDB studentDB = new StudentDB(students);
 
         // WHEN
-        Student[] actual = studentDB.getAllStudents();
+        Map<String, Student> actual = studentDB.getAllStudents();
 
         // THEN
-        Student[] expectedStudents = {student1, student2};
-        assertArrayEquals(expectedStudents, actual);
+        assertArrayEquals(students.values().toArray(), actual.values().toArray());
     }
 
     @Test
@@ -29,7 +34,10 @@ class StudentDBTest {
         // GIVEN
         Student student1 = new Student("123", "Adam");
         Student student2 = new Student("456", "Eva");
-        Student[] students = {student1, student2};
+
+        Map<String, Student> students = new HashMap<>(2);
+        students.put(student1.getId(), student1);
+        students.put(student2.getId(), student2);
 
         StudentDB studentDB = new StudentDB(students);
 
@@ -37,7 +45,7 @@ class StudentDBTest {
         String actual = studentDB.toString();
 
         // THEN
-        String expected = " Student{id='123', name='Adam'} Student{id='456', name='Eva'}";
+        String expected = "StudentDB{students={456=Student{id='456', name='Eva'}, 123=Student{id='123', name='Adam'}}}";
         assertEquals(expected, actual);
     }
 
@@ -47,7 +55,10 @@ class StudentDBTest {
         Student student1 = new Student("123", "Adam");
         Student student2 = new Student("456", "Eva");
 
-        Student[] students = {student1, student2};
+        Map<String, Student> students = new HashMap<>(2);
+        students.put(student1.getId(), student1);
+        students.put(student2.getId(), student2);
+
         StudentDB studentDB = new StudentDB(students);
 
         Student requestedStudent = student2;
@@ -64,7 +75,7 @@ class StudentDBTest {
     @Test
     void getStudentByIdShouldThrowExceptionOnInvalidId() {
         // GIVEN
-        Student[] students = new Student[0];
+        Map<String, Student> students = new HashMap<>(0);
         StudentDB studentDB = new StudentDB(students);
 
         String faultyId = "";
@@ -76,7 +87,7 @@ class StudentDBTest {
     @Test
     void getStudentByIdShouldThrowExceptionOnInvalidId_try_catch() {
         // GIVEN
-        Student[] students = new Student[0];
+        Map<String, Student> students = new HashMap<>(0);
         StudentDB studentDB = new StudentDB(students);
 
         String faultyId = "";

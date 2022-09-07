@@ -2,34 +2,28 @@ package repo;
 
 import model.Student;
 
-import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 
 public class StudentDB {
 
-    private Student[] students;
+    private Map<String, Student> students;
 
-    public StudentDB(Student[] students) {
+    public StudentDB(Map<String, Student> students) {
         this.students = students;
     }
 
-    public Student[] getAllStudents() {
+    public Map<String, Student> getAllStudents() {
         return this.students;
     }
 
     public Student getStudentById(String requestedId) {
-        Student requestedStudent = new Student();
-
-        for (Student student : students) {
-            if (student.getId().equals(requestedId)) {
-                requestedStudent = student;
-            }
-        }
+        Student requestedStudent = students.get(requestedId);
 
         // Exception werfen, wenn der passende Student nicht gefunden wurde
         // Alternativ prüfen ob Student null ist und anderen Wert zurückgeben
         // Bester Umgang: Optional
-        if(Objects.isNull(requestedStudent.getId())) {
+        if(requestedStudent == null) {
             throw new IllegalArgumentException("Es konnte kein Student mit der ID " + requestedId + " gefunden werden");
         }
 
@@ -37,13 +31,22 @@ public class StudentDB {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentDB studentDB = (StudentDB) o;
+        return Objects.equals(students, studentDB.students);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(students);
+    }
+
+    @Override
     public String toString() {
-        String dbAsString = "";
-
-        for (Student student : students) {
-            dbAsString = dbAsString + " " + student.toString();
-        }
-
-        return dbAsString;
+        return "StudentDB{" +
+                "students=" + students +
+                '}';
     }
 }
